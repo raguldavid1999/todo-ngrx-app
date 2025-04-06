@@ -1,0 +1,27 @@
+<input type="text" [(ngModel)]="newTodo" placeholder="Enter todo">
+<button type="button" (click)="addTodo()">Add Todo</button>
+
+<h3>All Todos</h3>
+<ul>
+    <li *ngFor="let todo of todo$ | async;trackBy todoTrackBy">
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
+        {{todo.title}}
+        <button type="button" (click)="deleteTodo(todo.id)">Delete</button>
+    </li>
+</ul>
+
+<h3>Active Todos</h3>
+<ul>
+    <li *ngFor="let todo of activeTodo$ | async">
+        {{todo.title}}
+    </li>
+</ul>
+
+<h3>Completed Todos</h3>
+<ul>
+    <li *ngFor="let todo of completedTodo$ | async">
+        {{todo.title}}
+    </li>
+</ul>
+
+<button type="button" routerLink="/sample">Go to sample</button>
